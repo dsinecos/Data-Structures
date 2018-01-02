@@ -45,3 +45,58 @@ LinkedList.prototype.addToTail = function(value) {
 
     this.tail = newNode;
 }
+
+// removeHead
+// If LL is empty - No operation
+// If LL is not empty - 
+//   Has only one element - Return node | Set this.head to null | Set this.tail to null
+//   Has more than one element - Return node | Set this.head to this.head.next | Set this.head.next.prev to null
+
+LinkedList.prototype.removeHead = function() {
+    if(this.head) { // LL is not empty
+
+        if(this.head.next) { // LL has more than one element
+            
+            var removedNode = this.head;
+            this.head.next.prev = null;
+            this.head = this.head.next;
+            return removedNode.value;     
+
+        } else { // LL has only one element
+
+            var removedNode = this.head;
+
+            this.head = null;
+            this.tail = null;
+            return removedNode.value;
+
+        }
+
+    }
+
+    return null;
+}
+
+// Tests for removeHead
+
+// When Linked List has more than one element
+var ll = new LinkedList();
+
+ll.addToHead(1000);
+ll.addToHead(2000);
+ll.addToTail(3000);
+
+console.log(ll.removeHead()); // Output should be 2000
+
+// When Linked List has only one element
+var ll2 = new LinkedList();
+
+ll.addToHead(1000);
+
+console.log(ll2.removeHead());
+
+// When empty
+var ll3 = new LinkedList();
+
+console.log(ll3.removeHead());
+
