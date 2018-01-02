@@ -30,3 +30,18 @@ LinkedList.prototype.addToHead = function (value) {
     this.head = newNode;
 }
 
+// addToTail
+// If LL is empty - Tail and Head will point to the same node
+// If LL is not empty - Tail will point to the new node | Previous Tail's next will point to the new node | New node's previous will point to the previous Tail
+
+LinkedList.prototype.addToTail = function(value) {
+    var newNode = new Node(value, null, this.tail);
+
+    if(this.tail) {
+        this.tail.next = newNode;
+    } else {
+        this.head = newNode;
+    }
+
+    this.tail = newNode;
+}
