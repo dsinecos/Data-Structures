@@ -1,0 +1,24 @@
+{
+  "name": "algorithm_data_structures",
+  "version": "1.0.0",
+  "description": "Practicing Algorithms and Data Structures - Udemy Course",
+  "main": "linkedList.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsinecos/Data-Structures.git"
+  },
+  "author": "dsinecos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsinecos/Data-Structures/issues"
+  },
+  "homepage": "https://github.com/dsinecos/Data-Structures#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "should": "^13.2.0"
+  }
+}

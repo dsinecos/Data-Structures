@@ -12,6 +12,14 @@ function LinkedList() {
 
 }
 
+function learnTesting() {
+    return 'Hello';
+    // return 2;
+}
+
+exports.LinkedList = LinkedList;
+exports.Node = Node;
+
 // addToHead 
 // Attaching the head and tail when using addToHead method
 // If LL is empty both will point at the recently added node
@@ -76,27 +84,3 @@ LinkedList.prototype.removeHead = function() {
 
     return null;
 }
-
-// Tests for removeHead
-
-// When Linked List has more than one element
-var ll = new LinkedList();
-
-ll.addToHead(1000);
-ll.addToHead(2000);
-ll.addToTail(3000);
-
-console.log(ll.removeHead()); // Output should be 2000
-
-// When Linked List has only one element
-var ll2 = new LinkedList();
-
-ll.addToHead(1000);
-
-console.log(ll2.removeHead());
-
-// When empty
-var ll3 = new LinkedList();
-
-console.log(ll3.removeHead());
-
