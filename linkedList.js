@@ -124,3 +124,30 @@ LinkedList.prototype.search = function(searchValue) {
     return null;
 }
 
+// If LL is empty return null
+// If LL is not empty return an array with indexes of the search value
+// If search value is not present in the array return null
+
+LinkedList.prototype.indexOf = function(value) {
+
+    var result = [];
+
+    var currentNode = this.head;
+    var index = 0;
+
+    while(currentNode) {
+        if(currentNode.value === value) {
+            result.push(index);
+        }
+
+        currentNode = currentNode.next;
+        index++;
+    }
+
+    if(result.length) {
+        return result;
+    } else {
+        return null;
+    }
+
+}

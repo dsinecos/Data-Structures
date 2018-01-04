@@ -177,3 +177,71 @@ describe("Testing search method using Udemy courses test cases", function() {
 
 })
 
+describe("Testing indexOf method", function() {
+    it("Returns null on an empty Linked List", function() {
+        var testLL = new LinkedList();
+
+        var result = testLL.search(1000);
+
+        expect(result).to.be.null;
+    })
+
+    it("Returns null when search value is not present in Linked List", function() {
+        var testLL = new LinkedList();
+        testLL.addToHead(1000);
+        testLL.addToHead(2000);
+        testLL.addToHead(3000);
+        testLL.addToHead(4000);
+
+        var result = testLL.indexOf(5000);
+
+        expect(result).to.be.null;
+    })
+
+    it("Returns result array when search value is present only once in Linked List", function() {
+        var testLL = new LinkedList();
+        testLL.addToHead(1000);
+        testLL.addToHead(2000);
+        testLL.addToHead(3000);
+        testLL.addToHead(4000);
+
+        var result = testLL.indexOf(1000);
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result).to.deep.equal([3]);
+    })
+
+    it("Returns result array when search value is present multiple times in Linked List", function() {
+        var testLL = new LinkedList();
+        testLL.addToHead(1000);
+        testLL.addToHead(2000);
+        testLL.addToHead(3000);
+        testLL.addToHead(4000);
+        testLL.addToHead(1000);
+
+        var result = testLL.indexOf(1000);
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result).to.deep.equal([0, 4]);
+    })
+})
+
+describe("Testing indexOf method using Udemy courses test cases", function() {
+
+    it("Case 1", function() {
+        var testLL = new LinkedList();
+        testLL.addToTail(1);
+        testLL.addToTail(5);
+        testLL.addToTail(3);
+        testLL.addToTail(5);
+        testLL.addToTail(8);
+        testLL.addToTail(7);
+        testLL.addToTail(5);
+
+        var result = testLL.indexOf(5);
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result).to.deep.equal([1, 3, 6]);
+    })
+
+})
