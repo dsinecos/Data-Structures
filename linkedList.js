@@ -84,3 +84,43 @@ LinkedList.prototype.removeHead = function() {
 
     return null;
 }
+
+LinkedList.prototype.removeTail = function() {
+    if(this.tail) {
+
+        if(this.tail.prev) { // LL has more than one element
+            var removedNode = this.tail;
+
+            this.tail = removedNode.prev;
+            this.tail.next = null;
+            return removedNode.value;
+        } else {
+
+            var removedNode = this.tail;
+
+            this.tail = null;
+            this.head = null;
+            return removedNode.value;
+        }
+    }
+
+    return null;
+}
+
+// If LL is empty return null
+// If LL is not empty, traverse LL, compare value and return the specific node
+// When LL is at last node - edge case
+
+LinkedList.prototype.search = function(searchValue) {
+    var currentNode = this.head;
+
+    while(currentNode) {
+        if(currentNode.value === searchValue) {
+            return currentNode;
+        }
+        currentNode = currentNode.next;
+    }
+
+    return null;
+}
+
