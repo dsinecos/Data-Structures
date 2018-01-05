@@ -42,3 +42,14 @@ BST.prototype.contains = function (value) {
     return false;
 
 }
+
+// Depth First Traversal in the order of Left < Parent < Right ie Least to Greatest 
+
+// What is the order of nodes to be returned to the iteratorFunc will determine the order of the statements in the depthFirstTraversal method
+
+BST.prototype.depthFirstTraversal = function(iteratorFunc) {
+    if(this.left) this.left.depthFirstTraversal(iteratorFunc);
+    iteratorFunc(this);    
+    if(this.right) this.right.depthFirstTraversal(iteratorFunc);
+    
+}
