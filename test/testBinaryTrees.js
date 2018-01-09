@@ -313,4 +313,46 @@ describe("Testing Breadth First Traversal Method on BST", function () {
         expect(resultArray).to.deep.equal([50, 30, 70, 20, 45, 60, 100, 10, 35, 59, 85, 105]);
 
     })
+});
+
+describe("Test getMinVal method on BST", function () {
+    it("Tests getMinVal when BST has only one node", function () {
+        var bst = new BST(50);
+
+        var result = bst.getMinVal();
+
+        expect(result).to.be.equal(50);
+    });
+
+    it("Tests getMinVal when BST has three nodes", function () {
+        var bst = new BST(50);
+        bst.insert(30);
+        bst.insert(70);
+
+        var result = bst.getMinVal();
+
+        expect(result).to.be.equal(30);
+
+    })
+
+    it("Tests getMinVal when BST has multiple nodes", function () {
+        var bst = new BST(50);
+
+        bst.insert(30);
+        bst.insert(70);
+        bst.insert(100);
+        bst.insert(60);
+        bst.insert(59);
+        bst.insert(20);
+        bst.insert(45);
+        bst.insert(35);
+        bst.insert(85);
+        bst.insert(105);
+        bst.insert(10);
+
+        var result = bst.getMinVal();
+
+        expect(result).to.be.equal(10);
+
+    })
 })
