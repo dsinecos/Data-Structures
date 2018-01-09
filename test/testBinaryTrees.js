@@ -259,4 +259,58 @@ describe("Testing Depth First Traversal (Post-order) Method on BST", function ()
         expect(resultArray).to.deep.equal([10, 20, 35, 45, 30, 59, 60, 85, 105, 100, 70, 50]);
 
     })
+});
+
+describe("Testing Breadth First Traversal Method on BST", function () {
+    it("When BST contains only the root node", function () {
+        var bst = new BST(50);
+        var resultArray = [];
+
+        bst.breadthFirstTraversal(function (node) {
+            resultArray.push(node.value);
+        });
+
+        expect(resultArray).to.deep.equal([50]);
+
+    })
+
+    it("When BST contains three nodes", function () {
+        var bst = new BST(50);
+        bst.insert(30);
+        bst.insert(70);
+
+        var resultArray = [];
+
+        bst.breadthFirstTraversal(function (node) {
+            resultArray.push(node.value);
+        });
+
+        expect(resultArray).to.deep.equal([50, 30, 70]);
+
+    })
+
+    it("When BST contains multiple nodes", function () {
+        var bst = new BST(50);
+
+        bst.insert(30);
+        bst.insert(70);
+        bst.insert(100);
+        bst.insert(60);
+        bst.insert(59);
+        bst.insert(20);
+        bst.insert(45);
+        bst.insert(35);
+        bst.insert(85);
+        bst.insert(105);
+        bst.insert(10);
+
+        var resultArray = [];
+
+        bst.breadthFirstTraversal(function (node) {
+            resultArray.push(node.value);
+        });
+
+        expect(resultArray).to.deep.equal([50, 30, 70, 20, 45, 60, 100, 10, 35, 59, 85, 105]);
+
+    })
 })

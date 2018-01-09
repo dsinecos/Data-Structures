@@ -46,12 +46,24 @@ BST.prototype.contains = function (value) {
 // Depth First Traversal method in - pre order, in order and post order
 
 BST.prototype.depthFirstTraversal = function (iteratorFunc, type) {
-    
-    if(type === "pre-order") iteratorFunc(this);
-    if(this.left) this.left.depthFirstTraversal(iteratorFunc, type);
-    if(type === "in-order") iteratorFunc(this);
-    if(this.right) this.right.depthFirstTraversal(iteratorFunc, type);
-    if(type === "post-order") iteratorFunc(this);
-    
 
+    if (type === "pre-order") iteratorFunc(this);
+    if (this.left) this.left.depthFirstTraversal(iteratorFunc, type);
+    if (type === "in-order") iteratorFunc(this);
+    if (this.right) this.right.depthFirstTraversal(iteratorFunc, type);
+    if (type === "post-order") iteratorFunc(this);
+
+}
+
+BST.prototype.breadthFirstTraversal = function (iteratorFunc) {
+    var queue = [this];
+
+    while (queue.length) {
+        var currentNode = queue.shift();
+
+        iteratorFunc(currentNode);
+
+        if (currentNode.left) queue.push(currentNode.left);
+        if (currentNode.right) queue.push(currentNode.right);
+    }
 }
