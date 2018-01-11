@@ -36,7 +36,7 @@ HashTable.prototype.insert = function (key, value) {
 
             if (currentNode.key === key) {
                 currentNode.value = value;
-                // return;
+                return;
             } else {
                 currentNode = currentNode.next;
             }
@@ -51,4 +51,22 @@ HashTable.prototype.insert = function (key, value) {
 
 
     }
+}
+
+HashTable.prototype.get = function (key) {
+    var index = this.hash(key);
+
+    var currentNode = this.buckets[index];
+
+    while (currentNode) {
+
+        if (currentNode.key === key) {
+            return currentNode;
+        } else {
+            currentNode = currentNode.next;
+        }
+
+    }
+
+    return null;
 }
