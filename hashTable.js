@@ -70,3 +70,20 @@ HashTable.prototype.get = function (key) {
 
     return null;
 }
+
+HashTable.prototype.retrieveAll = function() {
+    var arrayHashNodes = [];
+
+    for(var startingHashNode of this.buckets) {
+        
+        var currentNode = startingHashNode;
+
+        while(currentNode) {
+            arrayHashNodes.push(currentNode);
+            currentNode = currentNode.next;
+        }
+
+    }
+
+    return arrayHashNodes;
+}

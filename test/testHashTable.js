@@ -2,9 +2,9 @@ const expect = require('chai').expect;
 const HashTable = require('../hashTable.js').HashTable;
 const HashNode = require('../hashTable.js').HashNode;
 
-describe('Testing hash method of HashTable', function() {
+describe('Testing hash method of HashTable', function () {
 
-    it("Returns a number when a string is sent", function() {
+    it("Returns a number when a string is sent", function () {
         var myHT = new HashTable(30);
 
         var result = myHT.hash("Becca");
@@ -13,7 +13,7 @@ describe('Testing hash method of HashTable', function() {
         expect(result).to.be.equal(12);
     });
 
-    it("Returns the correct hash for a string", function() {
+    it("Returns the correct hash for a string", function () {
         var myHT = new HashTable(30);
 
         var result = myHT.hash("Becca");
@@ -24,9 +24,9 @@ describe('Testing hash method of HashTable', function() {
 
 });
 
-describe('Testing insert method of HashTable', function() {
+describe('Testing insert method of HashTable', function () {
 
-    it("Inserts a new HashNode in an empty bucket in the HashTable", function() {
+    it("Inserts a new HashNode in an empty bucket in the HashTable", function () {
         var myHT = new HashTable(30);
 
         myHT.insert("Dean", "dean@gmail.com");
@@ -38,7 +38,7 @@ describe('Testing insert method of HashTable', function() {
 
     });
 
-    it("Inserts a new HashNode in an already occupied bucket in the HashTable", function() {
+    it("Inserts a new HashNode in an already occupied bucket in the HashTable", function () {
 
         var myHT = new HashTable(30);
 
@@ -54,9 +54,9 @@ describe('Testing insert method of HashTable', function() {
 
 })
 
-describe('Testing insert method of HashTable to update an earlier entry', function() {
+describe('Testing insert method of HashTable to update an earlier entry', function () {
 
-    it("Updates a HashNode where there is only a single bucket in the HashTable", function() {
+    it("Updates a HashNode where there is only a single bucket in the HashTable", function () {
         var myHT = new HashTable(30);
 
         myHT.insert("Dean", "dean@gmail.com");
@@ -68,7 +68,7 @@ describe('Testing insert method of HashTable to update an earlier entry', functi
 
     });
 
-    it("Updates a HashNode in a bucket in the HashTable with multiple HashNodes", function() {
+    it("Updates a HashNode in a bucket in the HashTable with multiple HashNodes", function () {
 
         var myHT = new HashTable(30);
 
@@ -85,9 +85,9 @@ describe('Testing insert method of HashTable to update an earlier entry', functi
 
 })
 
-describe('Testing get method of HashTable', function() {
+describe('Testing get method of HashTable', function () {
 
-    it("Returns null when an entry does not exist in the HashTable", function() {
+    it("Returns null when an entry does not exist in the HashTable", function () {
         var myHT = new HashTable(30);
 
         myHT.insert("Dean", "dean@gmail.com");
@@ -99,7 +99,7 @@ describe('Testing get method of HashTable', function() {
 
     });
 
-    it("Returns a HashNode when the corresponding key exists as the first entry in the bucket", function() {
+    it("Returns a HashNode when the corresponding key exists as the first entry in the bucket", function () {
 
         var myHT = new HashTable(30);
 
@@ -114,7 +114,7 @@ describe('Testing get method of HashTable', function() {
 
     });
 
-    it("Returns a HashNode when the corresponding key exists as a later entry in the bucket", function() {
+    it("Returns a HashNode when the corresponding key exists as a later entry in the bucket", function () {
 
         var myHT = new HashTable(30);
 
@@ -129,7 +129,7 @@ describe('Testing get method of HashTable', function() {
 
     });
 
-    it("Udemy course test case", function() {
+    it("Udemy course test case", function () {
 
         var myHT = new HashTable(30);
 
@@ -145,5 +145,81 @@ describe('Testing get method of HashTable', function() {
         expect(result.value).to.be.equal("deanmachine@gmail.com");
 
     })
+
+})
+
+describe("Testing retrieveAll method of HashTable", function () {
+    it("Returns an empty array on an empty HashTable", function () {
+
+        var myHT = new HashTable(30);
+
+        var result = myHT.retrieveAll();
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result.length).to.be.equal(0);
+
+    });
+
+    it("Returns an array on a HashTable with multiple buckets with single entries", function () {
+
+        var myHT = new HashTable(30);
+
+        myHT.insert("Dean", "dean@gmail.com");
+        myHT.insert("Megan", "megan@gmail.com");
+
+        var result = myHT.retrieveAll();
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result.length).to.be.equal(2);
+        expect(result[0].key).to.be.equal("Megan");
+        expect(result[1].key).to.be.equal("Dean");
+
+    });
+
+    it("Returns an array on a HashTable with multiple buckets with multiple entries", function () {
+
+        var myHT = new HashTable(30);
+
+        myHT.insert("Dean", "dean@gmail.com");
+        myHT.insert("Dane", "dane@gmail.com");
+        myHT.insert("Megan", "megan@gmail.com");
+
+        var result = myHT.retrieveAll();
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result.length).to.be.equal(3);
+        expect(result[0].key).to.be.equal("Megan");
+        expect(result[1].key).to.be.equal("Dean");
+        expect(result[2].key).to.be.equal("Dane");
+
+    });
+
+    it("Udemy course test case", function () {
+
+        var myHT = new HashTable(30);
+
+        myHT.insert("Dean", "dean@gmail.com");
+        myHT.insert("Dane", "dane@gmail.com");
+        myHT.insert("Megan", "megan@gmail.com");
+        myHT.insert("Dean", "deanmachine@gmail.com");
+        myHT.insert("Dane", "dane1010@gmail.com");
+        myHT.insert("Megan", "megansmith@gmail.com");
+        myHT.insert("Joe", "joey@facebook.com");
+        myHT.insert("Samantha", "sammy@twitter.com");
+
+        var result = myHT.retrieveAll();
+
+        expect(result).to.be.instanceOf(Array);
+        expect(result.length).to.be.equal(5);
+
+        expect(result[0].key).to.be.equal("Samantha");
+        expect(result[1].key).to.be.equal("Megan");
+        expect(result[2].key).to.be.equal("Dean");
+        expect(result[3].key).to.be.equal("Dane");
+        expect(result[4].key).to.be.equal("Joe");
+
+
+    })
+
 
 })
