@@ -25,16 +25,30 @@ HashTable.prototype.hash = function (key) {
 HashTable.prototype.insert = function (key, value) {
 
     var index = this.hash(key);
-    var hashNode = new HashNode(key, value);
 
-    if (!this.buckets[index]) this.buckets[index] = hashNode;
+    if (!this.buckets[index]) this.buckets[index] = new HashNode(key, value);
     else {
+
+
         var currentNode = this.buckets[index];
 
         while (currentNode.next) {
-            currentNode = currentNode.next;
+
+            if (currentNode.key === key) {
+                currentNode.value = value;
+                // return;
+            } else {
+                currentNode = currentNode.next;
+            }
         }
 
-        currentNode.next = hashNode;
+        if (currentNode.key === key) {
+            currentNode.value = value;
+            return;
+        } else {
+            currentNode.next = new HashNode(key, value);
+        }
+
+
     }
 }
